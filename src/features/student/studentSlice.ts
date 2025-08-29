@@ -15,6 +15,7 @@ interface Student {
 
 export interface StudentsState {
   studentList: Student[]
+  singleStudent: Student | null
   loading: boolean
   error: string
   addLoading: boolean
@@ -28,6 +29,7 @@ interface NewStudentData {
 
 const initialState: StudentsState = {
   studentList: [],
+  singleStudent: null,
   loading: false,
   error: '',
   addLoading: false,
@@ -75,6 +77,22 @@ export const addNewStudent = createAsyncThunk(
   }
 )
 
+export const fetchStudentById = createAsyncThunk(
+  'fetchStudentById',
+  async (id: number, { rejectWithValue }) => {
+    try {
+      const res = await fetch(`${API_URI}/students/${id}`)
+      if (!res.ok) {
+        return rejectWithValue('Failed to fetch student')
+      }
+      const data = await res.json()
+      return data.data.student // single student object
+    } catch (err: any) {
+      return rejectWithValue(err.message || 'Unexpected error')
+    }
+  }
+)
+
 export const studentSlice = createSlice({
   name: 'student',
   initialState,
@@ -111,6 +129,22 @@ export const studentSlice = createSlice({
       .addCase(addNewStudent.rejected, (state, action) => {
         state.addLoading = false
         state.error = (action.payload as string) || 'Error in post data'
+      })
+      .addCase(fetchStudentById.pending, (state) => {
+        state.loading = true
+        state.error = ''
+      })
+      .addCase(
+        fetchStudentById.fulfilled,
+        (state, action: PayloadAction<Student>) => {
+          state.loading = false
+          state.singleStudent = action.payload
+        }
+      )
+      .addCase(fetchStudentById.rejected, (state, action) => {
+        state.loading = false
+        state.error =
+          (action.payload as string) || 'Error in fetch single student'
       })
   },
 })

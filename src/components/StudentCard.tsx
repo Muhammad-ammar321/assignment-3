@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 interface Course {
   courseName: string
@@ -18,7 +19,11 @@ const StudentCard: React.FC<{ student: Student }> = ({ student }) => {
     <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
       {/* Header */}
       <div className="mb-3">
-        <h2 className="text-xl font-semibold text-gray-900">{student.name}</h2>
+        <Link to={`/students/${student.id}`}>
+          <h2 className="text-xl font-semibold text-gray-900">
+            {student.name}
+          </h2>
+        </Link>
         <p className="text-sm text-gray-500">
           Age {student.age} • {student.major}
         </p>

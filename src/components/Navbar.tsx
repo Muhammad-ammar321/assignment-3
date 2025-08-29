@@ -1,11 +1,10 @@
-import { CircleFadingPlus, MenuIcon, XIcon } from 'lucide-react'
+import { MenuIcon, XIcon } from 'lucide-react'
 import { useState } from 'react'
+import { Link, NavLink } from 'react-router'
 
 const navLinks = [
-  { title: 'Tools', link: '#' },
-  { title: 'Blog', link: '#' },
-  { title: 'Contact', link: '#' },
-  { title: 'About', link: '#' },
+  { title: 'Home', link: '/' },
+  { title: 'About', link: '/about' },
 ]
 
 const Navbar = () => {
@@ -52,26 +51,18 @@ const Navbar = () => {
             }`}
           >
             {navLinks.map(({ title, link }, index) => (
-              <a
+              <NavLink
                 key={index}
-                href={link}
+                to={link}
                 className="rounded-md px-3 py-2 text-slate-500 transition-colors duration-100 ease-linear hover:bg-gray-700 hover:text-white"
               >
                 {title}
-              </a>
+              </NavLink>
             ))}
           </div>
         </div>
-        {/* CTA button */}
-        <div>
-          <button
-            type="button"
-            className="flex items-center gap-2 rounded-lg border bg-amber-500 px-3.5 py-1.5 text-base font-semibold text-white transition duration-300 ease-in-out hover:bg-amber-600 active:scale-95 sm:px-5 sm:py-2"
-          >
-            <CircleFadingPlus size={18} />
-            <span>Submit</span>
-          </button>
-        </div>
+
+        <Link to="login">Login</Link>
       </div>
     </nav>
   )
