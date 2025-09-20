@@ -5,6 +5,10 @@ export const Routes =  createBrowserRouter(
 
 [
     {
+        path:'/',
+        element:<Home/>
+    },
+    {
         path:'recipebook',
         element:<Recipe />
     }
