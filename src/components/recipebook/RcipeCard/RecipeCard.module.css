@@ -1,0 +1,29 @@
+.recipeCard {
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 1rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.recipeImage {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.cardButtons {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.button {
+  flex: 1;
+  padding: 0.3rem;
+  cursor: pointer;
+}
