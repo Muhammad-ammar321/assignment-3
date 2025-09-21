@@ -24,13 +24,13 @@ const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-      { path: 'about', element: <About /> },
+      { path: '/about', element: <About /> },
       {
         path:"/recipebook",
         element:<ProtectedRoute><Recipe/></ProtectedRoute>
       },
       {
-        path: 'login',
+        path: '/login',
         element: (
           <PublicRoute>
             <Login />
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'signup',
+        path: '/signup',
         element: (
           <PublicRoute>
             <Signup />
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: 'students/:id',
+        path: '/students/:id',
         element: (
           <ProtectedRoute>
             <StudentsDetails />
