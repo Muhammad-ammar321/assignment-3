@@ -1,0 +1,22 @@
+.filterSearch {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.select,
+.input {
+  padding: 0.4rem;
+  font-size: 1rem;
+  flex: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.select:focus,
+.input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 3px #007bff;
+}

@@ -1,10 +1,10 @@
 import { MenuIcon, XIcon } from 'lucide-react'
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router'
-
 const navLinks = [
   { title: 'Home', link: '/' },
   { title: 'About', link: '/about' },
+  { title:'RecipeBook' , link:'/recipebook'}
 ]
 
 const Navbar = () => {

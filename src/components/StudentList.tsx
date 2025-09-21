@@ -14,10 +14,21 @@ const StudentsList: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>()
 
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [selectedStudent, setSelectedStudent] = useState<any | null>(null)
 
   useEffect(() => {
     dispatch(fetchStudents())
   }, [dispatch])
+
+  const handleEdit = (student: any) => {
+    setSelectedStudent(student) // set student for editing
+    setDrawerOpen(true)
+  }
+
+  const handleAddNew = () => {
+    setSelectedStudent(null) // clear student when adding new
+    setDrawerOpen(true)
+  }
 
   if (loading) {
     return (
@@ -38,18 +49,27 @@ const StudentsList: React.FC = () => {
     <div className="max-w-6xl mx-auto p-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-bold text-gray-800">Students Result</h1>
-        <Button variant="outline" onClick={() => setDrawerOpen(true)}>
+        <Button variant="outline" onClick={handleAddNew}>
           Add New Student
         </Button>
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {studentList.map((student) => (
-          <StudentCard key={student.id} student={student} />
+          <StudentCard
+            key={student.id}
+            student={student}
+            onEdit={handleEdit}
+          />
         ))}
       </div>
 
-      <StudentDrawer open={drawerOpen} onClose={() => setDrawerOpen(false)} />
+      {/* Pass selectedStudent down */}
+      <StudentDrawer
+        open={drawerOpen}
+        onClose={() => setDrawerOpen(false)}
+        student={selectedStudent}
+      />
     </div>
   )
 }

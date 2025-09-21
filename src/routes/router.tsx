@@ -6,7 +6,9 @@ import Home from '../pages/Home'
 import Login from '../pages/Login'
 import Signup from '../pages/Signup'
 import StudentsDetails from '../pages/StudentDetail'
-import ProtectedRoute from '../components/ProtectedRoutes'
+import ProtectedRoute from '../components/protectedRoute/ProtectedRoutes'
+import PublicRoute from '../components/protectedRoute/PublicRoute'
+import Recipe from '../pages/RecipeBook/recipe'
 
 const router = createBrowserRouter([
   {
@@ -21,10 +23,28 @@ const router = createBrowserRouter([
             <Home />
           </ProtectedRoute>
         ),
-      }, // default route
+      },
       { path: 'about', element: <About /> },
-      { path: 'login', element: <Login /> },
-      { path: 'signup', element: <Signup /> },
+      {
+        path:"/recipebook",
+        element:<Recipe/>
+      },
+      {
+        path: 'login',
+        element: (
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        ),
+      },
+      {
+        path: 'signup',
+        element: (
+          <PublicRoute>
+            <Signup />
+          </PublicRoute>
+        ),
+      },
       {
         path: 'students/:id',
         element: (

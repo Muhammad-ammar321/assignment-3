@@ -1,5 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router'
+import { useDispatch } from 'react-redux'
+import type { AppDispatch } from '../app/store'
+import { deleteStudent } from '../features/student/studentSlice'
+import Button from './Button'
 
 interface Course {
   courseName: string
@@ -14,7 +18,20 @@ interface Student {
   courses?: Course[]
 }
 
-const StudentCard: React.FC<{ student: Student }> = ({ student }) => {
+interface StudentCardProps {
+  student: Student
+  onEdit?: (student: Student) => void // NEW
+}
+
+const StudentCard: React.FC<StudentCardProps> = ({ student, onEdit }) => {
+  const dispatch = useDispatch<AppDispatch>()
+
+  const handleDelete = () => {
+    if (window.confirm(`Are you sure you want to delete ${student.name}?`)) {
+      dispatch(deleteStudent(student.id))
+    }
+  }
+
   return (
     <div className="bg-white rounded-2xl p-5 shadow-sm border border-gray-300 hover:shadow-xl hover:-translate-y-1 transition-all duration-200">
       {/* Header */}
@@ -48,6 +65,18 @@ const StudentCard: React.FC<{ student: Student }> = ({ student }) => {
             </li>
           ))}
         </ul>
+      </div>
+
+      {/* Actions */}
+      <div className="flex justify-end gap-2 mt-4">
+        {onEdit && (
+          <Button  onClick={() => onEdit(student)}>
+            Edit
+          </Button>
+        )}
+        <Button  onClick={handleDelete}>
+          Delete
+        </Button>
       </div>
     </div>
   )
