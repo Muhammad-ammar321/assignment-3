@@ -1,12 +1,9 @@
-<<<<<<< HEAD
 @import 'tailwindcss';
 
 button {
   cursor: pointer;
 }
 /* 
-=======
->>>>>>> 24b606852aa9f3bd67e0c4e6fbdc57f7a2cc5765
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -48,8 +45,4 @@ button {
 
 .read-the-docs {
   color: #888;
-<<<<<<< HEAD
 } */
-=======
-}
->>>>>>> 24b606852aa9f3bd67e0c4e6fbdc57f7a2cc5765
