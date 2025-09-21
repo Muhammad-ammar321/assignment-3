@@ -27,7 +27,7 @@ const router = createBrowserRouter([
       { path: 'about', element: <About /> },
       {
         path:"/recipebook",
-        element:<Recipe/>
+        element:<ProtectedRoute><Recipe/></ProtectedRoute>
       },
       {
         path: 'login',
